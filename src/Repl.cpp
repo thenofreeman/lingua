@@ -20,7 +20,6 @@ void Repl::start()
 
 void Repl::prompt()
 {
-
     std::string line { "" };
 
     while (line != terminationKeyword)

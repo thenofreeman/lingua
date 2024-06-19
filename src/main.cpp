@@ -1,9 +1,9 @@
 #include <iostream>
 #include <sstream>
 
-// #include "Lexer.h"
 #include "Token.h"
 #include "Repl.h"
+#include "Interpreter.h"
 
 std::unordered_map<TokenType, std::string> tokenNames = {
     { TokenType::Whitespace, "Whitespace" },

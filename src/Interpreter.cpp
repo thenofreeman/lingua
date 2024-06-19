@@ -35,14 +35,10 @@ void Interpreter::lexTokens(std::istream& inputstream)
 
     Token token = lexer.next();
 
-    // int x = 0;
     while (token.type != TokenType::End)
     {
         std::cout << token.lineNumber << "[" << token.column << "] " << tokenNames[token.type] << " [ "<< token.value << " ]" << std::endl;
         token = lexer.next();
-
-        // if (++x == 200)
-        //     break;
     }
 }
 

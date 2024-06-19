@@ -40,7 +40,6 @@ void Lexer::readTokensFromLine()
     }
 
     std::getline(inputstream, currentLine.value);
-    std::cout << "\nLINE: " << currentLine.value << std::endl;
 
     if (currentLine.value != "")
     {
