@@ -1,8 +1,9 @@
 #include <iostream>
 #include <sstream>
 
-#include "Lexer.h"
+// #include "Lexer.h"
 #include "Token.h"
+#include "Repl.h"
 
 std::unordered_map<TokenType, std::string> tokenNames = {
     { TokenType::Whitespace, "Whitespace" },
@@ -19,32 +20,17 @@ std::unordered_map<TokenType, std::string> tokenNames = {
 
 int main(int argc, char const *argv[])
 {
-    std::stringstream input;
-
-    input << "# The first ever lingua program"      << '\n'
-          << "three: int = 3"                       << '\n'
-          << "seventeen: int = 17"                  << '\n'
-          << ""                                     << '\n'
-          << "func mult(a: int, b: int) -> int:"    << '\n'
-          << "    return a * b"                     << '\n'
-          << ""                                     << '\n'
-          << "result: int = mult(three, seventeen)" << '\n'
-          << ""                                     << '\n'
-          << "print(result + 5)"                    << '\n'
-          << '\0';
-
-    Lexer lexer (input);
-
-    Token token = lexer.next();
-
-    int x = 0;
-    while (token.type != TokenType::End)
+    if (argc == 1)
     {
-        std::cout << token.lineNumber << "[" << token.column << "] " << tokenNames[token.type] << " [ "<< token.value << " ]\n" << std::endl;
-        token = lexer.next();
+        Repl repl("Welcome to Lingua...");
+        repl.start();
+    }
+    else 
+    {
+        std::string file { argv[1] };
 
-        if (++x == 10)
-            break;
+        Interpreter interpreter;
+        interpreter.readfile(file);
     }
 
     return 0;
