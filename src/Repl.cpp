@@ -23,10 +23,6 @@ void Repl::prompt()
 
     std::string line { "" };
 
-    // std::cout << linePrompt;
-    // std::getline(std::cin, line);
-    // interpreter.readline(line);
-
     while (line != terminationKeyword)
     {
         std::cout << linePrompt;

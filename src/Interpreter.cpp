@@ -8,27 +8,34 @@ Interpreter::~Interpreter()
 
 void Interpreter::readline(const std::string& line)
 {
-    std::stringstream linestream { line };
+    std::stringstream inputstream;
+    inputstream << line;
 
-    lexTokens(linestream);
+    lexTokens(inputstream);
 }
 
 void Interpreter::readfile(const std::string& filename)
 {
     std::ifstream file (filename);
 
+    if (!file) // this shouldn't be here....
+    {
+        std::cout << "Bad Filename." << std::endl;
+        exit(0);
+    }
+
     lexTokens(file);
 
     file.close();
 }
 
-void Interpreter::lexTokens(std::istream& stream)
+void Interpreter::lexTokens(std::istream& inputstream)
 {
-    static Lexer lexer(stream);
+    static Lexer lexer(inputstream);
 
     Token token = lexer.next();
 
-    int x = 0;
+    // int x = 0;
     while (token.type != TokenType::End)
     {
         std::cout << token.lineNumber << "[" << token.column << "] " << tokenNames[token.type] << " [ "<< token.value << " ]" << std::endl;

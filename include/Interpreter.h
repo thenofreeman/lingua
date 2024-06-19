@@ -16,12 +16,9 @@ class Interpreter
         void readline(const std::string& filename);
         void readfile(const std::string& filename);
 
+    private:
+        void lexTokens(std::istream& inputstream);
 
     private:
-        void lexTokens(std::istream& stream);
-
-    private:
-        std::stringstream inputstream;
-
         static std::unordered_map<TokenType, std::string> tokenNames;
 };
