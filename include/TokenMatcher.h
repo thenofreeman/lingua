@@ -26,6 +26,7 @@ class TokenMatcher
         std::vector<Token> matchLine(TokenLine line);
 
     private:
-        std::regex validTokenPattern;
+        std::regex tokenPatternsRegex;
+        std::unordered_map<TokenType, std::string> tokenPatterns;
 
 };
