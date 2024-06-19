@@ -9,7 +9,7 @@ TokenMatcher::TokenMatcher()
         { TokenType::Separator, R"(([()[\[\]{}:]))" },
         { TokenType::Operator, R"(([=]|->|[*]|[+]))" },
         { TokenType::Literal, R"(([0-9]+|true|false))" },
-        // { TokenType::Identifier, R"((_|[a-zA-Z][a-zA-Z0-9_]*))" },
+        { TokenType::Identifier, R"((_|[a-zA-Z][a-zA-Z0-9_]*))" },
         // { TokenType::End, R"((\0))" },
         // { TokenType::Illegal, R"((.))" },
     };
