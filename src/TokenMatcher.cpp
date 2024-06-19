@@ -2,7 +2,7 @@
 
 TokenMatcher::TokenMatcher()
 { 
-    std::unordered_map<TokenType, std::string> patterns = {
+    tokenPatterns = {
         { TokenType::Whitespace, R"((\t+))" },
         { TokenType::Comment, R"((#.*))" },
         { TokenType::Keyword, R"((int|double|const|if|else|import|while|func))" },
@@ -15,12 +15,12 @@ TokenMatcher::TokenMatcher()
     };
 
     std::stringstream tokenPatternStream;
-    for (const auto& pattern : patterns)
-        tokenPatternStream << pattern.second << "|";
+    for (const auto& pattern : tokenPatterns)
+        tokenPatternStream << "(" << pattern.second << ")|";
     std::string tokenPatternString = tokenPatternStream.str();
     tokenPatternString.pop_back();
 
-    validTokenPattern = std::regex(tokenPatternString, std::regex::optimize);
+    tokenPatternsRegex = std::regex(tokenPatternString, std::regex::optimize);
 }
 
 TokenMatcher::~TokenMatcher()
@@ -33,13 +33,22 @@ std::vector<Token> TokenMatcher::matchLine(TokenLine line)
     std::smatch match;
     std::string::const_iterator start (line.value.cbegin());
 
-    while (std::regex_search(start, line.value.cend(), match, validTokenPattern))
+    while (std::regex_search(start, line.value.cend(), match, tokenPatternsRegex))
     {
         for (size_t i = 1; i < match.size(); ++i)
         {
             if (match[i].matched)
             {
-                TokenType tokenType = static_cast<TokenType>(i);
+                TokenType tokenType = static_cast<TokenType>(i-1);
+
+                for (const auto& pattern : tokenPatterns)
+                {
+                    if (!match[i].str().empty() && std::regex_match(match[i].str(), std::regex(pattern.second)))
+                    {
+                        tokenType = pattern.first;
+                        break;
+                    }
+                }
 
                 Token newToken = { tokenType, match.str(), line.number, line.position };
                 tokens.push_back(newToken);
