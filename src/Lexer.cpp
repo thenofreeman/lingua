@@ -45,6 +45,6 @@ std::cout << "LINE: " << currentLine.value << std::endl;
     {
         currentLine.number++;
         tokens = matcher.matchLine(currentLine);
-        tokens.push_back({ TokenType::Whitespace, "\n", currentLine.number, currentLine.position });
+        tokens.push_back({ TokenType::Whitespace, "\n", currentLine.number, currentLine.value.length() });
     }
 }
