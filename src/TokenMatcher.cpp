@@ -7,7 +7,7 @@ TokenMatcher::TokenMatcher()
         { TokenType::Comment, R"((#.*))" },
         { TokenType::Keyword, R"((int|double|const|if|else|import|while|func))" },
         { TokenType::Separator, R"(([()[\[\]{}:]))" },
-        { TokenType::Operator, R"(([=]|->|[*]|[+]))" },
+        { TokenType::Operator, R"(([=]|->|[*]|[+]|[,]))" },
         { TokenType::Literal, R"(([0-9]+|true|false))" },
         { TokenType::Identifier, R"((_|[a-zA-Z][a-zA-Z0-9_]*))" },
         // { TokenType::End, R"((\0))" },
