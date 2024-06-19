@@ -8,7 +8,7 @@ TokenMatcher::TokenMatcher()
         { TokenType::Keyword, R"((int|double|const|if|else|import|while|func))" },
         { TokenType::Separator, R"(([()[\[\]{}:]))" },
         { TokenType::Operator, R"(([=]|->|[*]|[+]))" },
-        // { TokenType::Literal, R"((\b(true|false)\b|\B'(.?)'\B|\B"(.*?)\"\B|\B`([\s\S]*?)`\B| \B\\(.*?)\\\B|(?<!\S)([0-9]+[u]?[bsilh]?|\d+\.\d*[fdq]?|\.?\d+[fdq])(?!\S)|\b(_)\b))" },
+        { TokenType::Literal, R"(([0-9]+|true|false))" },
         // { TokenType::Identifier, R"((_|[a-zA-Z][a-zA-Z0-9_]*))" },
         // { TokenType::End, R"((\0))" },
         // { TokenType::Illegal, R"((.))" },
