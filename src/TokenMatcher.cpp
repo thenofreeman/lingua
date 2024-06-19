@@ -37,13 +37,17 @@ std::vector<Token> TokenMatcher::matchLine(TokenLine line)
     {
         for (size_t i = 1; i < match.size(); ++i)
         {
-            TokenType tokenType = static_cast<TokenType>(i);
+            if (match[i].matched)
+            {
+                TokenType tokenType = static_cast<TokenType>(i);
 
-            Token newToken = { tokenType, match.str(), line.number, line.position };
-            tokens.push_back(newToken);
+                Token newToken = { tokenType, match.str(), line.number, line.position };
+                tokens.push_back(newToken);
 
-            start = match.suffix().first;
-            break;
+                line.position += match.size();
+                start = match.suffix().first;
+                break;
+            }
         }
     }
 
