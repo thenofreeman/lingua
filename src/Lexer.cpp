@@ -48,5 +48,5 @@ void Lexer::readTokensFromLine()
         tokens = matcher.matchLine(currentLine);
     }
 
-    tokens.push_back({ TokenType::Whitespace, "\\n", currentLine.number, currentLine.value.length() });
+    tokens.push_back({ TokenType::Whitespace, "\\n", currentLine.number, currentLine.value.length()+1 });
 }

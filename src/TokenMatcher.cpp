@@ -3,7 +3,7 @@
 TokenMatcher::TokenMatcher()
 { 
     tokenPatterns = {
-        { TokenType::Whitespace, R"((\t+))" },
+        { TokenType::Whitespace, R"((\s+))" },
         { TokenType::Comment, R"((#.*))" },
         { TokenType::Keyword, R"((int|double|const|if|else|import|while|func))" },
         { TokenType::Separator, R"(([()[\[\]{}:]))" },
@@ -48,10 +48,10 @@ std::vector<Token> TokenMatcher::matchLine(TokenLine line)
                     }
                 }
 
-                Token newToken = { tokenType, match.str(), line.number, line.position };
+                std::size_t tokenPosition = std::distance(line.value.cbegin(), start) + 1;
+                Token newToken = { tokenType, match.str(), line.number, tokenPosition };
                 tokens.push_back(newToken);
 
-                line.position += match.size();
                 start = match.suffix().first;
                 break;
             }
