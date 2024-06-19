@@ -35,7 +35,7 @@ void Lexer::readTokensFromLine()
 {
     if (inputstream.get() == EOF)
     {
-        tokens.push_back({ TokenType::End, currentLine.value, currentLine.number, currentLine.position });
+        tokens.push_back({ TokenGroup::End, currentLine.value, currentLine.number, currentLine.position });
         return;
     }
 
@@ -47,5 +47,5 @@ void Lexer::readTokensFromLine()
         tokens = matcher.matchLine(currentLine);
     }
 
-    tokens.push_back({ TokenType::Whitespace, "\\n", currentLine.number, currentLine.value.length()+1 });
+    tokens.push_back({ TokenGroup::Whitespace, "\\n", currentLine.number, currentLine.value.length()+1 });
 }

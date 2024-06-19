@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-enum class TokenType : std::uint8_t
+enum class TokenGroup : std::uint8_t
 {
     Whitespace = 0,
     Comment,

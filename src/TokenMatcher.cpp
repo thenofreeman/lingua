@@ -3,13 +3,13 @@
 TokenMatcher::TokenMatcher()
 { 
     tokenPatterns = {
-        { TokenType::Whitespace, R"((\s+))" },
-        { TokenType::Comment, R"((#.*))" },
-        { TokenType::Keyword, R"((int|double|const|if|else|import|while|func))" },
-        { TokenType::Separator, R"(([()[\[\]{}:]))" },
-        { TokenType::Operator, R"(([=]|->|[*]|[+]|[,]))" },
-        { TokenType::Literal, R"(([0-9]+|true|false))" },
-        { TokenType::Identifier, R"((_|[a-zA-Z][a-zA-Z0-9_]*))" },
+        { TokenGroup::Whitespace, R"((\s+))" },
+        { TokenGroup::Comment, R"((#.*))" },
+        { TokenGroup::Keyword, R"((int|double|const|if|else|import|while|func))" },
+        { TokenGroup::Separator, R"(([()[\[\]{}:]))" },
+        { TokenGroup::Operator, R"(([=]|->|[*]|[+]|[,]))" },
+        { TokenGroup::Literal, R"(([0-9]+|true|false))" },
+        { TokenGroup::Identifier, R"((_|[a-zA-Z][a-zA-Z0-9_]*))" },
     };
 
     std::stringstream tokenPatternStream;
@@ -37,7 +37,7 @@ std::vector<Token> TokenMatcher::matchLine(TokenLine line)
         {
             if (match[i].matched)
             {
-                TokenType tokenType = static_cast<TokenType>(i-1);
+                TokenGroup tokenType = static_cast<TokenGroup>(i-1);
 
                 for (const auto& pattern : tokenPatterns)
                 {

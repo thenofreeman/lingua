@@ -35,22 +35,22 @@ void Interpreter::lexTokens(std::istream& inputstream)
 
     Token token = lexer.next();
 
-    while (token.type != TokenType::End)
+    while (token.type != TokenGroup::End)
     {
         std::cout << token.lineNumber << "[" << token.column << "] " << tokenNames[token.type] << " [ "<< token.value << " ]" << std::endl;
         token = lexer.next();
     }
 }
 
-std::unordered_map<TokenType, std::string> Interpreter::tokenNames = {
-    { TokenType::Whitespace, "Whitespace" },
-    { TokenType::Comment,    "Comment" },
-    { TokenType::Keyword,    "Keyword" },
-    { TokenType::Separator,  "Separator" },
-    { TokenType::Operator,   "Operator" },
-    { TokenType::Literal,    "Literal" },
-    { TokenType::Identifier, "Identifier" },
-    { TokenType::Illegal,    "Illegal" },
-    { TokenType::Unknown,    "Unknown" },
-    { TokenType::End,        "End" },
+std::unordered_map<TokenGroup, std::string> Interpreter::tokenNames = {
+    { TokenGroup::Whitespace, "Whitespace" },
+    { TokenGroup::Comment,    "Comment" },
+    { TokenGroup::Keyword,    "Keyword" },
+    { TokenGroup::Separator,  "Separator" },
+    { TokenGroup::Operator,   "Operator" },
+    { TokenGroup::Literal,    "Literal" },
+    { TokenGroup::Identifier, "Identifier" },
+    { TokenGroup::Illegal,    "Illegal" },
+    { TokenGroup::Unknown,    "Unknown" },
+    { TokenGroup::End,        "End" },
 };

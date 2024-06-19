@@ -8,7 +8,7 @@
 #include <vector>
 #include <regex>
 
-#include "TokenType.h"
+#include "TokenGroup.h"
 #include "Token.h"
 
 struct TokenLine {
@@ -27,6 +27,6 @@ class TokenMatcher
 
     private:
         std::regex tokenPatternsRegex;
-        std::unordered_map<TokenType, std::string> tokenPatterns;
+        std::unordered_map<TokenGroup, std::string> tokenPatterns;
 
 };

@@ -5,17 +5,17 @@
 #include "Repl.h"
 #include "Interpreter.h"
 
-std::unordered_map<TokenType, std::string> tokenNames = {
-    { TokenType::Whitespace, "Whitespace" },
-    { TokenType::Comment,    "Comment" },
-    { TokenType::Keyword,    "Keyword" },
-    { TokenType::Separator,  "Separator" },
-    { TokenType::Operator,   "Operator" },
-    { TokenType::Literal,    "Literal" },
-    { TokenType::Identifier, "Identifier" },
-    { TokenType::Illegal,    "Illegal" },
-    { TokenType::Unknown,    "Unknown" },
-    { TokenType::End,        "End" },
+std::unordered_map<TokenGroup, std::string> tokenNames = {
+    { TokenGroup::Whitespace, "Whitespace" },
+    { TokenGroup::Comment,    "Comment" },
+    { TokenGroup::Keyword,    "Keyword" },
+    { TokenGroup::Separator,  "Separator" },
+    { TokenGroup::Operator,   "Operator" },
+    { TokenGroup::Literal,    "Literal" },
+    { TokenGroup::Identifier, "Identifier" },
+    { TokenGroup::Illegal,    "Illegal" },
+    { TokenGroup::Unknown,    "Unknown" },
+    { TokenGroup::End,        "End" },
 };
 
 int main(int argc, char const *argv[])

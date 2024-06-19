@@ -2,11 +2,11 @@
 
 #include <string>
 
-#include "TokenType.h"
+#include "TokenGroup.h"
 
 struct Token
 {
-    TokenType type;
+    TokenGroup type;
     std::string value;
     size_t lineNumber;
     size_t column;

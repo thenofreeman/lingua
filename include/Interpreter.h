@@ -20,5 +20,5 @@ class Interpreter
         void lexTokens(std::istream& inputstream);
 
     private:
-        static std::unordered_map<TokenType, std::string> tokenNames;
+        static std::unordered_map<TokenGroup, std::string> tokenNames;
 };
